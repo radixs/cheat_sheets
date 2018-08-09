@@ -1,8 +1,14 @@
-Adding controllers: php bin/console make:controller Default
-+ adding crud: php bin/console make:crud Default
+# Controllers
+
+##### Adding controllers:
+```
+php bin/console make:controller Default
+```
+##### Adding crud: php bin/console make:crud Default
 
 example: route /lucky/number
 controller:
+```
 class LuckyController
 {
     public function number()
@@ -14,25 +20,32 @@ class LuckyController
         );
     }
 }
+```
+or return following instead:
+```
 return $this->json(array('username' => 'jane.doe'));
 return $this->file('/path/to/some_file.pdf');
-    // load the file from the filesystem
-    $file = new File('/path/to/some_file.pdf');
 
-    return $this->file($file);
+// load the file from the filesystem
+$file = new File('/path/to/some_file.pdf');
 
-    // rename the downloaded file
-    return $this->file($file, 'custom_name.pdf');
+return $this->file($file);
 
-    // display the file contents in the browser instead of downloading it
-    return $this->file('invoice_3241.pdf', 'my_invoice.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+// rename the downloaded file
+return $this->file($file, 'custom_name.pdf');
 
-routes.yaml:
-app_lucky_number:
-    path: /lucky/number
-    controller: App\Controller\LuckyController::number
+// display the file contents in the browser instead of downloading it
+return $this->file('invoice_3241.pdf', 'my_invoice.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+```
+###### routes.yaml - used for setting up routes:
+app_lucky_number example:
+```
+path: /lucky/number
+controller: App\Controller\LuckyController::number
+```
 
 another routing example:
+```
 blog_list:
     path:      /blog/{page}
     controller: App\Controller\BlogController::list
@@ -40,58 +53,70 @@ blog_list:
         page: 1
     requirements:
         page: '\d+'
-{page} is the parameter for the controller method
-requirements is a filter for that parameter
+```
+where {page} is the parameter for the controller method, requirements is a filter for that parameter
 
-generating urls in controllers:
-        $url = $this->generateUrl(
-            'blog_show',
-            ['slug' => 'my-blog-post']
-        );
+###### Generating urls in controllers:
+```
+$url = $this->generateUrl(
+    'blog_show',
+    ['slug' => 'my-blog-post']
+);
+```
 		
-redirect:
+###### Adding redirects:
+```
 return $this->redirectToRoute('homepage');
 return $this->redirectToRoute('app_lucky_number', ['max' => 10]);
 return $this->redirect('http://symfony.com/doc'); //external
+```
 
-Errors/missing pages:
-    $product = ...;
-    if (!$product) {
-        throw $this->createNotFoundException('The product does not exist');
+###### Setting up errors/missing pages:
+```
+$product = ...;
+if (!$product) {
+    throw $this->createNotFoundException('The product does not exist');
 
-        // the above is just a shortcut for:
-        // throw new NotFoundHttpException('The product does not exist');
-    }
+    // the above is just a shortcut for:
+    // throw new NotFoundHttpException('The product does not exist');
+}
+```
  
-Access to the request data:
+###### Access to the request data:
+```
 public function index(Request $request, $firstName, $lastName)
 {
     $page = $request->query->get('page', 1);
 
     // ...
 }
-    $request->isXmlHttpRequest(); // is it an Ajax request?
+```
+OR some of these:
+```
+$request->isXmlHttpRequest(); // is it an Ajax request?
 
-    $request->getPreferredLanguage(array('en', 'fr'));
+$request->getPreferredLanguage(array('en', 'fr'));
 
-    // retrieves GET and POST variables respectively
-    $request->query->get('page');
-    $request->request->get('page');
+// retrieves GET and POST variables respectively
+$request->query->get('page');
+$request->request->get('page');
 
-    // retrieves SERVER variables
-    $request->server->get('HTTP_HOST');
+// retrieves SERVER variables
+$request->server->get('HTTP_HOST');
 
-    // retrieves an instance of UploadedFile identified by foo
-    $request->files->get('foo');
+// retrieves an instance of UploadedFile identified by foo
+$request->files->get('foo');
 
-    // retrieves a COOKIE value
-    $request->cookies->get('PHPSESSID');
+// retrieves a COOKIE value
+$request->cookies->get('PHPSESSID');
 
-    // retrieves an HTTP request header, with normalized, lowercase keys
-    $request->headers->get('host');
-    $request->headers->get('content_type');
+// retrieves an HTTP request header, with normalized, lowercase keys
+$request->headers->get('host');
+$request->headers->get('content_type');
+```
 
-Access to sessions: must be enabled in config/packages/framework.yaml
+###### Access to sessions: must be enabled in config/packages/framework.yaml
+```
 public function index(SessionInterface $session)
 {
     // stores an attribute for reuse during a later user request
@@ -103,12 +128,18 @@ public function index(SessionInterface $session)
     // uses a default value if the attribute doesn't exist
     $filters = $session->get('filters', array());
 }
+```
 
-Flash messages: notice, warning, error; use peek() or peekAll() to get the message but not delete it
-        $this->addFlash(
-            'notice',
-            'Your changes were saved!'
-        );
+###### Flash messages: notice, warning, error; use peek() or peekAll() to get the message but not delete it
+in controller:
+```
+$this->addFlash(
+    'notice',
+    'Your changes were saved!'
+);
+```
+then in a template:
+```
 {# you can read and display just one flash message type... #}
 {% for message in app.flashes('notice') %}
     <div class="flash-notice">
@@ -124,3 +155,4 @@ Flash messages: notice, warning, error; use peek() or peekAll() to get the messa
         </div>
     {% endfor %}
 {% endfor %}
+```
