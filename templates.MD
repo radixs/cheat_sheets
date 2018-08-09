@@ -42,7 +42,7 @@ do:
 <link href="{{ asset('css/blog.css') }}" rel="stylesheet" />
 ```
 
-In <script>:
+In `<script>`:
 ```
 <script>
 var route = "{{ path('blog_show', {'slug': 'my-blog-post'})|escape('js') }}";
