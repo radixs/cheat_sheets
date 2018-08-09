@@ -1,9 +1,10 @@
 # Debugging
 
 ###### Default targets:
+```
 /var/logs/dev.log
 appPath/_profiler/
-
+```
 
 ###### Environment: set it in .env in root dir
 ```
