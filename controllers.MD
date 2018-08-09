@@ -4,10 +4,30 @@
 ```
 php bin/console make:controller Default
 ```
-##### Adding crud: php bin/console make:crud Default
+##### Adding crud:
+```
+php bin/console make:crud Default
+```
+###### routes.yaml - used for setting up routes:
+app_lucky_number example:
+```
+path: /lucky/number
+controller: App\Controller\LuckyController::number
+```
 
-example: route /lucky/number
-controller:
+another routing example:
+```
+blog_list:
+    path:      /blog/{page}
+    controller: App\Controller\BlogController::list
+	defaults:
+        page: 1
+    requirements:
+        page: '\d+'
+```
+where {page} is the parameter for the controller method, requirements is a filter for that parameter
+
+###### Example controller and what it can return: route /lucky/number
 ```
 class LuckyController
 {
@@ -37,24 +57,6 @@ return $this->file($file, 'custom_name.pdf');
 // display the file contents in the browser instead of downloading it
 return $this->file('invoice_3241.pdf', 'my_invoice.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
 ```
-###### routes.yaml - used for setting up routes:
-app_lucky_number example:
-```
-path: /lucky/number
-controller: App\Controller\LuckyController::number
-```
-
-another routing example:
-```
-blog_list:
-    path:      /blog/{page}
-    controller: App\Controller\BlogController::list
-	defaults:
-        page: 1
-    requirements:
-        page: '\d+'
-```
-where {page} is the parameter for the controller method, requirements is a filter for that parameter
 
 ###### Generating urls in controllers:
 ```
