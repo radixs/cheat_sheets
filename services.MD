@@ -17,6 +17,8 @@ public function number($max, LoggerInterface $logger)
 ###### Services: go to src/Service/SomeService.php
 example:
 ```
+namespace App\Service;
+
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SomeService
