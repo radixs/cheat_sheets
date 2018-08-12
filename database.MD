@@ -181,8 +181,7 @@ Do you want to automatically delete orphaned App\Entity\Product objects
 Related Entities can be then accessed by standard getters or a query builder can be used that will automatically create necessary Entity instances.
 
 ###### ManyToMany.
-
-
+TODO
 
 
 
