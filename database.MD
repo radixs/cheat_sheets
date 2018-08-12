@@ -19,6 +19,7 @@ php bin/console make:entity
 ```
 Then answert questions about the Entity parameters/db fields. An entity class wil be created in `src/Entity`
 Available mapping types: https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/basic-mapping.html#doctrine-mapping-types
+Also a repository class will be created. All extra specialized methods for entity manipulation should go to this class.
 
 ###### Migration.
 If entities were modified with the maker:
@@ -31,16 +32,13 @@ php bin/console doctrine:migrations:migrate
 ```
 this will apply migrations into the database.
 
-###### Entity fetching.
-
-
-###### Entity manipulation.
+###### Entity creation and manipulation.
 
 First get the entity manager:
 ```
 $entityManager = $this->getDoctrine()->getManager();
 ```
-then manipulate the entity (example entity called Product):
+then create and manipulate the entity (example entity called Product):
 ```
 $product = new Product();
 $product->setName('Keyboard');
@@ -56,10 +54,73 @@ $entityManager->persist($product);
 $entityManager->flush();
 ```
 
+###### Entity fetching.
+```
+$product = $this->getDoctrine()->getRepository(Product::class)->find($id);
 
+if (!$product) {
+    throw $this->createNotFoundException(
+        'No product found for id '.$id
+    );
+}
+```
+Repository is a class that helps fetching entities of a certain class.
+Other methods of fetching:
+```
+// look for a single Product by name
+$product = $repository->findOneBy(['name' => 'Keyboard']);
+// or find by name and price
+$product = $repository->findOneBy([
+    'name' => 'Keyboard',
+    'price' => 1999,
+]);
 
+// look for multiple Product objects matching the name, ordered by price
+$products = $repository->findBy(
+    ['name' => 'Keyboard'],
+    ['price' => 'ASC']
+);
 
+// look for *all* Product objects
+$products = $repository->findAll();
+```
+###### Deleting an entity.
+```
+$entityManager->remove($product);
+$entityManager->flush();
+```
+###### Query builder example. More detailed here https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/query-builder.html
+```
+// src/Repository/ProductRepository.php
 
+// ...
+class ProductRepository extends ServiceEntityRepository
+{
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Product::class);
+    }
 
+    /**
+     * @param $price
+     * @return Product[]
+     */
+    public function findAllGreaterThanPrice($price): array
+    {
+        // automatically knows to select Products
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.price > :price')
+            ->setParameter('price', $price)
+            ->orderBy('p.price', 'ASC')
+            ->getQuery();
+
+        return $qb->execute();
+
+        // to get just one result:
+        // $product = $qb->setMaxResults(1)->getOneOrNullResult();
+    }
+}
+```
 
 
