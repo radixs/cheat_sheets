@@ -32,6 +32,12 @@ php bin/console doctrine:migrations:migrate
 ```
 this will apply migrations into the database.
 
+Other way to create migraitons is via
+```
+php bin/console doctrine:migrations:diff
+```
+that will generate migration files by comparing Entities with the database.
+
 ###### Entity creation and manipulation.
 
 First get the entity manager:
@@ -52,6 +58,10 @@ $entityManager->persist($product);
 
 // actually executes the queries (i.e. the INSERT query)
 $entityManager->flush();
+```
+Once persisted the Entity has an id:
+```
+$product->getId();
 ```
 
 ###### Entity fetching.
@@ -122,5 +132,65 @@ class ProductRepository extends ServiceEntityRepository
     }
 }
 ```
+
+##### Relationships. https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/association-mapping.html
+Relationship types:
+- OneToOne (in practice similar to ManyToOne) - direct FK mapping
+- ManyToOne/OneToMany - direct FK mapping
+- ManyToMany - requires a join table
+
+###### ManyToOne.
+Use maker to create FK relation, with optional CASCADE (orphan)
+```
+ php bin/console make:entity
+
+Class name of the entity to create or update (e.g. BraveChef):
+> Product
+
+ to stop adding fields):
+> category
+
+Field type (enter ? to see all types) [string]:
+> relation
+
+What class should this entity be related to?:
+> Category
+
+Relation type? [ManyToOne, OneToMany, ManyToMany, OneToOne]:
+> ManyToOne
+
+Is the Product.category property allowed to be null (nullable)? (yes/no) [yes]:
+> no
+
+Do you want to add a new property to Category so that you can access/update
+getProducts()? (yes/no) [yes]:
+> yes
+
+New field name inside Category [products]:
+> products
+
+Do you want to automatically delete orphaned App\Entity\Product objects
+(orphanRemoval)? (yes/no) [no]:
+> no
+
+ to stop adding fields):
+>
+(press enter again to finish)
+```
+
+Related Entities can be then accessed by standard getters or a query builder can be used that will automatically create necessary Entity instances.
+
+###### ManyToMany.
+
+
+
+
+
+
+
+
+
+
+
 
 
