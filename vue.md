@@ -1,3 +1,6 @@
+For twig you need to do something like `{{"{{ message }}"}}` in order to beat the overlapping of brackets with vue
+
+
 defining vue app in js:
 
 ```
@@ -7,7 +10,12 @@ new Vue({
     data: {
         message: 'Hello world!',
         message2: 'blah blah blah',
-        seen: true
+        seen: true.
+        for_example: [
+            {text: "one"},
+            {text: "two"},
+            {text: "three"}
+        ]
     }
 });
 ```
@@ -32,4 +40,13 @@ title link
 element toggle
 ```
 <span v-if="seen">Now you see me</span>
+```
+
+for loop
+```
+<ol>
+    <li v-for="loopit in for_example">
+        {{"{{ loopit.text }}"}}
+    </li>
+</ol>
 ```
