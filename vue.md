@@ -9,6 +9,12 @@ Just a dynamic variable link.
 </div>
 ```
 
+and add dynamic binding:
+```
+<input v-model="message">
+```
+
+
 title link
 ```
 <span v-bind:title="message2">
