@@ -1,5 +1,7 @@
 For twig you need to do something like `{{"{{ message }}"}}` in order to beat the overlapping of brackets with vue
 
+# Basics
+
 ### in html:
 
 Just a dynamic variable link.
@@ -68,4 +70,39 @@ new Vue({
         }
     }
 });
+```
+
+# Components
+
+### defining inside main Vue component:
+```
+new Vue({
+    el: '#app',
+    components: {SomeFunComponent},
+});
+```
+
+you need the component defined in `SomeFunComponent` in `components` directory relative to your main app.js:
+```
+<template>
+    <div>
+        <p>This is an example of a new components in VueJs</p>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "example"
+    }
+</script>
+
+<style scoped>
+
+</style>
+
+```
+
+and finally put it soemwhere in the DOM to wtite it in:
+```
+<somefuncomponent></somefuncomponent>
 ```
