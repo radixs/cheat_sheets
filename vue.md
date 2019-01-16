@@ -4,7 +4,7 @@ For twig you need to do something like `{{"{{ message }}"}}` in order to beat th
 
 ### in html:
 
-Just a dynamic variable link. To disable ability to reactively change it add v-once directive to holding element.
+Just a dynamic variable link. To disable ability to reactively change it add `v-once` directive to holding element.
 ```
 <div>
     {{"{{ message }}"}}
