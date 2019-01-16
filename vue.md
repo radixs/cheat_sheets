@@ -22,8 +22,7 @@ and add dynamic binding:
 <input v-model="message">
 ```
 
-
-title link
+attribute value binding
 ```
 <span v-bind:title="message2">
     Hover your mouse over me for a few seconds
