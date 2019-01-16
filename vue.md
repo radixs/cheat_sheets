@@ -13,7 +13,7 @@ Just a dynamic text variable link. To disable ability to reactively change it ad
 
 for html strings do:
 ```
-<span v-html="rawHtml"></span></p>
+<span v-html="message"></span></p>
 ```
 
 
