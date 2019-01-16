@@ -44,7 +44,7 @@ for loop
 </ol>
 ```
 
-events and actions on DOM:
+events and actions on DOM, you can add `.prevent` modifier for `preventDefault` functionality:
 ```
 <div">
     <p>{{"{{ message3 }}"}}</p>
