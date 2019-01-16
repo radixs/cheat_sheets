@@ -82,7 +82,7 @@ new Vue({
 });
 ```
 
-you need the component defined in `SomeFunComponent` in `components` directory relative to your main app.js:
+you need the component defined in `SomeFunComponent.vue` in `components` directory relative to your main app.js:
 ```
 <template>
     <div>
