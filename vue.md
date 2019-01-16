@@ -71,6 +71,7 @@ new Vue({
     }
 });
 ```
+
 # API
 
 ### instance methods:
@@ -80,6 +81,8 @@ vm.$watch('a', function (newValue, oldValue) {
   // This callback will be called when `vm.a` changes
 })
 ```
+### hooks:
+beforeUpdate, updated
 
 # Components
 
