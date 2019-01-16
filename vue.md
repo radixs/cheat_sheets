@@ -1,31 +1,6 @@
 For twig you need to do something like `{{"{{ message }}"}}` in order to beat the overlapping of brackets with vue
 
-
-defining vue app in js:
-
-```
-new Vue({
-    el: '#app',
-    components: {Example},
-    data: {
-        message: 'Hello world!',
-        message2: 'blah blah blah',
-        seen: true.
-        for_example: [
-            {text: "one"},
-            {text: "two"},
-            {text: "three"}
-        ]
-    },
-    methods: {
-        reverseMessage: function () {
-            this.message = this.message.split('').reverse().join('')
-        }
-    }
-});
-```
-
-then in html:
+### in html:
 
 Just a dynamic variable link.
 ```
@@ -62,4 +37,29 @@ events and actions on DOM:
     <p>{{"{{ message3 }}"}}</p>
     <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
+```
+
+
+### defining vue app in js:
+
+```
+new Vue({
+    el: '#app',
+    components: {Example},
+    data: {
+        message: 'Hello world!',
+        message2: 'blah blah blah',
+        seen: true.
+        for_example: [
+            {text: "one"},
+            {text: "two"},
+            {text: "three"}
+        ]
+    },
+    methods: {
+        reverseMessage: function () {
+            this.message = this.message.split('').reverse().join('')
+        }
+    }
+});
 ```
