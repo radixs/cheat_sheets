@@ -9,6 +9,10 @@ Just a dynamic text variable link. To disable ability to reactively change it ad
 <div>
     {{"{{ message }}"}}
 </div>
+
+<div>
+    {{"{{ reversedMessage }}"}}
+</div>
 ```
 
 for html strings do:
@@ -53,7 +57,7 @@ events and actions on DOM, you can add `.prevent` modifier for `preventDefault` 
 ```
 
 
-### defining vue app in js:
+### defining vue app in js (primitives in `data`, complex in `computed`, functions in `methods`):
 
 ```
 new Vue({
@@ -72,6 +76,13 @@ new Vue({
     methods: {
         reverseMessage: function () {
             this.message = this.message.split('').reverse().join('')
+        }
+    },
+    computed: {
+        // a computed getter
+        reversedMessage: function () {
+            // `this` points to the vm instance
+            return this.message.split('').reverse().join('')
         }
     }
 });
