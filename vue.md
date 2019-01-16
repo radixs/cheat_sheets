@@ -71,6 +71,15 @@ new Vue({
     }
 });
 ```
+# API
+
+### instance methods:
+```
+// $watch is an instance method
+vm.$watch('a', function (newValue, oldValue) {
+  // This callback will be called when `vm.a` changes
+})
+```
 
 # Components
 
