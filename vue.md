@@ -16,6 +16,11 @@ new Vue({
             {text: "two"},
             {text: "three"}
         ]
+    },
+    methods: {
+        reverseMessage: function () {
+            this.message = this.message.split('').reverse().join('')
+        }
     }
 });
 ```
@@ -49,4 +54,12 @@ for loop
         {{"{{ loopit.text }}"}}
     </li>
 </ol>
+```
+
+events and actions on DOM:
+```
+<div">
+    <p>{{"{{ message3 }}"}}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
 ```
