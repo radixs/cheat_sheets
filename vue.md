@@ -22,7 +22,7 @@ and add dynamic binding:
 <input v-model="message">
 ```
 
-attribute value binding
+attribute value binding (shorthand for `v-bind:title` is `:title`)
 ```
 <span v-bind:title="message2">
     Hover your mouse over me for a few seconds
@@ -44,7 +44,7 @@ for loop
 </ol>
 ```
 
-events and actions on DOM, you can add `.prevent` modifier for `preventDefault` functionality:
+events and actions on DOM, you can add `.prevent` modifier for `preventDefault` functionality. Shorthand for `v-on:click` is `@click`:
 ```
 <div">
     <p>{{"{{ message3 }}"}}</p>
