@@ -87,6 +87,27 @@ new Vue({
     }
 });
 ```
+computed can also have setters:
+```
+// ...
+computed: {
+    fullName: {
+        // getter
+        get: function () {
+            return this.firstName + ' ' + this.lastName
+        },
+        // setter
+        set: function (newValue) {
+            var names = newValue.split(' ')
+            this.firstName = names[0]
+            this.lastName = names[names.length - 1]
+        }
+    }
+}
+// ...
+```
+
+
 
 watchers can also be used, however it is better to use coputed:
 ```
