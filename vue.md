@@ -38,6 +38,15 @@ value binding for classes (determined byt truthiness):
 ```
 <div class="static"  v-bind:class="{ active: isActive, 'text-danger': hasError }"></div>
 ```
+or define in data:
+```
+data: {
+  classObject: {
+    active: true,
+    'text-danger': false
+  }
+}
+```
 
 element toggle
 ```
