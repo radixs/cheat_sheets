@@ -53,9 +53,12 @@ array bind:
 ```
 
 
-element toggle
+element toggle, conditionals
 ```
 <span v-if="seen">Now you see me</span>
+
+<h1 v-if="ok">Yes</h1>
+<h1 v-else>No</h1>
 ```
 
 for loop
