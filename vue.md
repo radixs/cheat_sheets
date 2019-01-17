@@ -200,3 +200,40 @@ and finally put it soemwhere in the DOM to wtite it in:
 ```
 <somefuncomponent></somefuncomponent>
 ```
+
+To pass in some values into a component do:
+```
+//js
+Vue.component('blog-post', {
+  props: ['title'],
+  template: '<h3>{{ title }}</h3>'
+})
+
+//template
+<blog-post title="My journey with Vue"></blog-post>
+<blog-post title="Blogging with Vue"></blog-post>
+<blog-post title="Why Vue is so fun"></blog-post>
+```
+or from data:
+```
+//js
+new Vue({
+  el: '#blog-post-demo',
+  data: {
+    posts: [
+      { id: 1, title: 'My journey with Vue' },
+      { id: 2, title: 'Blogging with Vue' },
+      { id: 3, title: 'Why Vue is so fun' }
+    ]
+  }
+})
+
+//template:
+<blog-post
+  v-for="post in posts"
+  v-bind:key="post.id"
+  v-bind:title="post.title"
+></blog-post>
+```
+
+
