@@ -47,6 +47,11 @@ data: {
   }
 }
 ```
+array bind:
+```
+<div v-bind:class="[activeClass, errorClass]"></div>
+```
+
 
 element toggle
 ```
@@ -85,7 +90,9 @@ new Vue({
             {text: "one"},
             {text: "two"},
             {text: "three"}
-        ]
+        ],
+        activeClass: 'active',
+        errorClass: 'text-danger'
     },
     methods: {
         reverseMessage: function () {
