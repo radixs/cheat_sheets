@@ -34,6 +34,11 @@ attribute value binding (shorthand for `v-bind:title` is `:title`)
 </span>
 ```
 
+value binding for classes (determined byt truthiness):
+```
+<div class="static"  v-bind:class="{ active: isActive, 'text-danger': hasError }"></div>
+```
+
 element toggle
 ```
 <span v-if="seen">Now you see me</span>
