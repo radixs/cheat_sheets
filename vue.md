@@ -6,6 +6,7 @@
 * https://vuejs.org/v2/api/#Global-Config
 * http://www.javascripttutorial.net/es6/es6-modules/ - modules import/export tutorial
 * https://babeljs.io/docs/en/learn - ES6 feature list
+* https://cli.vuejs.org/guide/ - vue cli
 
 
 For twig you need to do something like `{{"{{ message }}"}}` in order to beat the overlapping of brackets with vue
