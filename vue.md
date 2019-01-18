@@ -1,3 +1,12 @@
+# Guides
+
+* https://vuejs.org/v2/guide/ - main page
+* https://vuejs.org/v2/guide/components-registration.html - how component system works in vue
+* https://vuejs.org/v2/guide/single-file-components.html - how vue files are to be structured
+* https://vuejs.org/v2/api/#Global-Config
+* http://www.javascripttutorial.net/es6/es6-modules/ - modules import/export tutorial
+
+
 For twig you need to do something like `{{"{{ message }}"}}` in order to beat the overlapping of brackets with vue
 
 # Basics
@@ -7,11 +16,11 @@ For twig you need to do something like `{{"{{ message }}"}}` in order to beat th
 Just a dynamic text variable link. To disable ability to reactively change it add `v-once` directive to holding element.
 ```
 <div>
-    {{"{{ message }}"}}
+    {{ message }}
 </div>
 
 <div>
-    {{"{{ reversedMessage }}"}}
+    {{ reversedMessage }}
 </div>
 ```
 
@@ -65,7 +74,7 @@ for loop
 ```
 <ol>
     <li v-for="loopit in for_example">
-        {{"{{ loopit.text }}"}}
+        {{ loopit.text }}
     </li>
 </ol>
 ```
@@ -73,7 +82,7 @@ for loop
 events and actions on DOM, you can add `.prevent` modifier for `preventDefault` functionality. Shorthand for `v-on:click` is `@click`:
 ```
 <div">
-    <p>{{"{{ message3 }}"}}</p>
+    <p>{{ message3 }}</p>
     <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
 ```
